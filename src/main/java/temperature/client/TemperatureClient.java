@@ -7,6 +7,8 @@ import com.proto.temp.TempServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
+import java.util.Scanner;
+
 public class TemperatureClient {
     public static void main(String[] args) {
         System.out.println("Temperature Client");
@@ -19,10 +21,14 @@ public class TemperatureClient {
         System.out.println("test ok to here 1");
 
         //create protobuf temperature
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter Desired Temperature: ");
+        String myTemp = sc.next();
+
         Temperature temperature = Temperature.newBuilder()
-                .setCurrentTemp("20")
+                .setCurrentTemp(myTemp)
                 .build();
-        System.out.println("Test temp: " + temperature);
+        System.out.println("Setting to " + temperature + " degrees...");
 
         //create protobuf for temp request
         TempRequest tempRequest = TempRequest.newBuilder()
@@ -32,7 +38,7 @@ public class TemperatureClient {
 
         //RPC call to return a response
         TempResponse tempResponse = tClient.temp(tempRequest);
-        System.out.println("Current temperature is " + tempResponse.getResult());
+        System.out.println(tempResponse.getResult());
 
         System.out.println("Shutting down channel...");
         channel.shutdown();

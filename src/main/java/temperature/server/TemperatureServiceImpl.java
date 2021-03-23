@@ -17,7 +17,7 @@ public class TemperatureServiceImpl extends TempServiceGrpc.TempServiceImplBase 
         String currentTemp = temperature.getCurrentTemp();
 
         //create the response
-        String result = "Current temp is" + currentTemp;
+        String result = "Temperature set to " + currentTemp;
         TempResponse response = TempResponse.newBuilder().setResult(result).build();
 
         //send the response to the client
