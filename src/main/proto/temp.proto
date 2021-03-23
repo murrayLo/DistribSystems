@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package temp;
+
+option java_package = "com.proto.temp";
+option java_multiple_files = true;
+
+message Temperature {
+  string currentTemp = 1;
+}
+
+message TempRequest {
+  Temperature temperature = 1;
+}
+
+message TempResponse {
+  string result = 1;
+}
+
+service TempService {
+  //Unary service
+  rpc Temp(TempRequest) returns (TempResponse) {};
+}
