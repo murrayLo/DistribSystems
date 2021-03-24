@@ -10,7 +10,6 @@ public class TemperatureServiceImpl extends TempServiceGrpc.TempServiceImplBase 
 
     @Override
     public void temp(TempRequest request, StreamObserver<TempResponse> responseObserver) {
-        //super.temp(request, responseObserver);
 
         //Get data for the response
         Temperature temperature = request.getTemperature();

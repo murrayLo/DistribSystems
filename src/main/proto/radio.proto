@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package radio;
+
+option java_package = "com.proto.radio";
+option java_multiple_files = true;
+
+message SmartRadio {
+  string station = 1;
+}
+
+message RadioRequest {
+  SmartRadio smartRadio = 1;
+}
+
+message RadioResponse {
+  string result = 1;
+}
+
+message RadioStreamRequest {
+  SmartRadio smartRadio = 1;
+}
+
+message RadioStreamResponse {
+  string result = 1;
+}
+
+service RadioService {
+  //Unary
+  rpc Radio(RadioRequest) returns (RadioResponse) {};
+  //SERVER STREAMING
+  rpc RadioStream(RadioStreamRequest) returns (stream RadioStreamResponse) {};
+}
+

@@ -8,7 +8,7 @@ public class TemperatureServer {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
-        System.out.println("Temperature Server is Running");
+        System.out.println("Temperature server starting up...");
 
         Server server = ServerBuilder.forPort(50051)
 
@@ -18,10 +18,12 @@ public class TemperatureServer {
 
         server.start();
 
+        System.out.println("** Temperature Server is Running **");
+
         Runtime.getRuntime().addShutdownHook(new Thread( () -> {
             System.out.println("Server shutting down...");
             server.shutdown();
-            System.out.println("Server shut down successfully");
+            System.out.println("** Server shut down successfully **");
         } ) );
 
         server.awaitTermination();

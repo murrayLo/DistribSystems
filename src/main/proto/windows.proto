@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package windows;
+
+message WindowState {
+  int32 id = 1;
+  string state = 2;
+}
+
+message AllWindows {
+  repeated WindowState window = 1;
+}
+
+message void {
+
+}
+
+service WindowsService {
+  rpc doWindow(WindowState) returns (WindowState);
+  rpc checkWindows(void) returns (AllWindows);
+}
