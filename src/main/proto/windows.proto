@@ -1,21 +1,57 @@
 syntax = "proto3";
 
-package windows;
+package window;
 
-message WindowState {
-  int32 id = 1;
+option java_package = "com.proto.windows";
+option java_multiple_files = true;
+
+message SmartWindow {
+  string windowName = 1;
   string state = 2;
 }
 
-message AllWindows {
-  repeated WindowState window = 1;
+message WindowRequest {
+  SmartWindow smartWindow = 1;
 }
 
-message void {
-
+message WindowResponse {
+  string result = 1;
 }
 
-service WindowsService {
-  rpc doWindow(WindowState) returns (WindowState);
-  rpc checkWindows(void) returns (AllWindows);
+message WindowSvrRequest {
+  SmartWindow smartWindow = 1;
+}
+
+message WindowSvrResponse {
+  string result = 1;
+}
+
+message WindowClRequest {
+  SmartWindow smartWindow = 1;
+}
+
+message WindowClResponse {
+  string result = 1;
+}
+
+message WindowStreamingRequest {
+  SmartWindow smartWindow = 1;
+}
+
+message WindowStreamingResponse {
+  string result = 1;
+}
+
+service WindowService {
+  //UNARY
+  rpc WindowUn (WindowRequest) returns (WindowResponse) {};
+
+  //CLIENT STREAMING
+  rpc WindowClStream(stream WindowClRequest) returns (WindowClResponse) {};
+
+  //SERVER STREAMING
+  rpc WindowSvrStream(WindowSvrRequest) returns (stream WindowSvrResponse) {};
+
+  //BiDi STREAMING
+  rpc Windows(stream WindowStreamingRequest) returns (stream WindowStreamingResponse) {};
 }

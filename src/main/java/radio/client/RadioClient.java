@@ -19,25 +19,8 @@ public class RadioClient {
         //create radio service client
         RadioServiceGrpc.RadioServiceBlockingStub radioClient = RadioServiceGrpc.newBlockingStub(channel);
 
-//        //UNARY
-//        //take input from user to set the station (protobuf SmartRadio message)
-//        Scanner sc = new Scanner(System.in);
-//        System.out.println("What station do you want to listen to: ");
-//        String myStation = sc.next();
-//        SmartRadio smartRadio = SmartRadio.newBuilder()
-//                .setStation(myStation)
-//                .build();
-//
-//        //Take that string as the value for the request
-//        RadioRequest radioRequest = RadioRequest.newBuilder()
-//                .setSmartRadio(smartRadio)
-//                .build();
-//
-//        //call the RPC to get the response (protobuf RadioResponse message)
-//        RadioResponse radioResponse = radioClient.radio(radioRequest);
-//        System.out.println(radioResponse.getResult());
-
         //SERVER STREAMING
+        //get user input
         Scanner sc = new Scanner(System.in);
         System.out.println("What do you want to listen to: ");
         String myStation = sc.next();
